@@ -16,6 +16,9 @@ Explication du processus zombie
 (point 5 de "A completer" dans le devoir):
 
 	(s.v.p. completez cette partie);
+	Explication: on a un processus zombie, qui ne consomme aucune resource
+	de la memoire, et dont la fermeture est occasionée par l'appel de la
+	fonction wait() par le processus parent.
 
 -------------------------------------------------------------*/
 #include <stdio.h>
@@ -73,7 +76,6 @@ void creerEnfantEtLire(int prcNum)
        instructions du devoirs. */
 
 	printf("Processus %d commence \n", prcNum);
-	// enlever 
 	fflush(stdout);
 
 	if (prcNum > 1)
