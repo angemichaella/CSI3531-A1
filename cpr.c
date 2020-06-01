@@ -1,8 +1,8 @@
 /*------------------------------------------------------------
 Fichier: cpr.c
 
-Nom #1: Ange Michaella Niyonkuru
-Numero d'etudiant #1: 
+Nom #1: Ange Michaella NIYONKURU
+Numero d'etudiant #1: 8962161
 
 Nom #2: Mugabo Kevin GATERA
 Numero d'etudiant #2: 8725061
