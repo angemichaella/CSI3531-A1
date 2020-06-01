@@ -93,7 +93,7 @@ void creerEnfantEtLire(int prcNum)
 		// Creation de l' enfant direct
 		pid_t pid = fork();
 
-		//Verification
+		//Vérification d'erreur avec la fonction fork
 		if (pid < 0)
 		{
 			fprintf(stderr, "Erreur Fork");
@@ -105,6 +105,9 @@ void creerEnfantEtLire(int prcNum)
 		{
 			close(tuyau[1]);
 			char buf[1];
+
+			// lecture du bout de lecture du tuyeau et ecriture des données
+            // lues à la sortie standard
 			while (read(tuyau[0], buf, 1) > 0)
 			{
 				write(1, buf, 1);
@@ -116,6 +119,7 @@ void creerEnfantEtLire(int prcNum)
 		{
 			close(tuyau[0]);
 			dup2(tuyau[1], 1);
+			
 			// Lancer/executer le programme cpr courrant dans le processur enfant
 			execlp("./cpr", "cpr", arg, (char *)NULL);
 		}
