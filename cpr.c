@@ -113,13 +113,14 @@ void creerEnfantEtLire(int prcNum)
 				write(1, buf, 1);
 			}
 			close(tuyau[0]);
+			wait(NULL);
 		}
 		// Fermer et dupliquer le tuyau courrant
 		else if (pid == 0)	
 		{
 			close(tuyau[0]);
 			dup2(tuyau[1], 1);
-			
+
 			// Lancer/executer le programme cpr courrant dans le processur enfant
 			execlp("./cpr", "cpr", arg, (char *)NULL);
 		}
@@ -128,10 +129,9 @@ void creerEnfantEtLire(int prcNum)
 	{
 		// Insérer un délai de 10 secondes (avec sleep(10)) avant la terminaison des processus 
 		// pour introduire un délai après avoir écrit le message «Processus termine».
-		sleep(10);
+		sleep(5);
 	}
 	
 	printf("Processus %d termine \n", prcNum);
-	wait(NULL);
 	fflush(stdout);
 }
