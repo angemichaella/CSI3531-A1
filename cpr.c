@@ -81,7 +81,7 @@ void creerEnfantEtLire(int prcNum)
 		int tuyau[2];
 		if (pipe(tuyau) == -1)
 		{
-			fprintf(stderr, "Pipe error");
+			fprintf(stderr, "Erreur du tuyau");
 			exit(1);
 		}
 
