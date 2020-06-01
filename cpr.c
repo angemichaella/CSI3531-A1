@@ -1,7 +1,10 @@
 /*------------------------------------------------------------
 Fichier: cpr.c
 
-Nom:
+Nom #1: Ange Michaella Niyonkuru
+Numero d'etudiant #1: 
+
+Nom: Mugabo Kevin Gatera
 Numero d'etudiant:
 
 Description: Ce programme contient le code pour la creation
