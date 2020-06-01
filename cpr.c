@@ -74,7 +74,7 @@ void creerEnfantEtLire(int prcNum)
 
 	printf("Processus %d commence \n", prcNum);
 	// enlever 
-	// fflush(stdout);
+	fflush(stdout);
 
 	if (prcNum > 1)
 	{
@@ -108,7 +108,6 @@ void creerEnfantEtLire(int prcNum)
 				write(1, buf, 1);
 			}
 			close(tuyau[0]);
-			wait(NULL);
 		}
 		// Fermer et dupliquer le tuyau courrant
 		else if (pid == 0)	
@@ -125,7 +124,8 @@ void creerEnfantEtLire(int prcNum)
 		// pour introduire un délai après avoir écrit le message «Processus termine».
 		sleep(10);
 	}
-
+	
 	printf("Processus %d termine \n", prcNum);
-	// fflush(stdout);
+	wait(NULL);
+	fflush(stdout);
 }
