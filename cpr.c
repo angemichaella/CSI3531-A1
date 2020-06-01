@@ -20,6 +20,7 @@ Explication du processus zombie
 -------------------------------------------------------------*/
 #include <stdio.h>
 #include <sys/select.h>
+#include <stdlib.h>
 
 /* Prototype */
 void creerEnfantEtLire(int );
@@ -72,7 +73,8 @@ void creerEnfantEtLire(int prcNum)
        instructions du devoirs. */
 
 	printf("Processus %d commence \n", prcNum);
-	fflush(stdout);
+	// enlever 
+	// fflush(stdout);
 
 	if (prcNum > 1)
 	{
@@ -85,7 +87,6 @@ void creerEnfantEtLire(int prcNum)
 
 		char arg[10];
 		sprintf(arg, "%d", prcNum - 1);
-		pid_t currpid;
 
 		// Creation de l' enfant direct
 		pid_t pid = fork();
@@ -96,6 +97,8 @@ void creerEnfantEtLire(int prcNum)
 			fprintf(stderr, "Erreur Fork");
 			exit(1);
 		}
+		// Maintenant que les processus ont ete crees, 
+		// il faut maintenant ecrire le contenu du tuyau a l' ecran 
 		else if (pid > 0)
 		{
 			close(tuyau[1]);
@@ -107,18 +110,22 @@ void creerEnfantEtLire(int prcNum)
 			close(tuyau[0]);
 			wait(NULL);
 		}
-		else if (pid == 0)
+		// Fermer et dupliquer le tuyau courrant
+		else if (pid == 0)	
 		{
 			close(tuyau[0]);
 			dup2(tuyau[1], 1);
+			// Lancer/executer le programme cpr courrant dans le processur enfant
 			execlp("./cpr", "cpr", arg, (char *)NULL);
 		}
 	}
 	else
 	{
+		// Insérer un délai de 10 secondes (avec sleep(10)) avant la terminaison des processus 
+		// pour introduire un délai après avoir écrit le message «Processus termine».
 		sleep(10);
 	}
 
 	printf("Processus %d termine \n", prcNum);
-	fflush(stdout);
+	// fflush(stdout);
 }
