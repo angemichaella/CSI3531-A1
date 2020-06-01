@@ -71,5 +71,54 @@ void creerEnfantEtLire(int prcNum)
     /* S.V.P. completez cette fonction selon les
        instructions du devoirs. */
 
-	
+	printf("Processus %d commence \n", prcNum);
+	fflush(stdout);
+
+	if (prcNum > 1)
+	{
+		int tuyau[2];
+		if (pipe(tuyau) == -1)
+		{
+			fprintf(stderr, "Pipe error");
+			exit(1);
+		}
+
+		char arg[10];
+		sprintf(arg, "%d", prcNum - 1);
+		pid_t currpid;
+
+		// Creation de l' enfant direct
+		pid_t pid = fork();
+
+		//Verification
+		if (pid < 0)
+		{
+			fprintf(stderr, "Erreur Fork");
+			exit(1);
+		}
+		else if (pid > 0)
+		{
+			close(tuyau[1]);
+			char buf[1];
+			while (read(tuyau[0], buf, 1) > 0)
+			{
+				write(1, buf, 1);
+			}
+			close(tuyau[0]);
+			wait(NULL);
+		}
+		else if (pid == 0)
+		{
+			close(tuyau[0]);
+			dup2(tuyau[1], 1);
+			execlp("./cpr", "cpr", arg, (char *)NULL);
+		}
+	}
+	else
+	{
+		sleep(10);
+	}
+
+	printf("Processus %d termine \n", prcNum);
+	fflush(stdout);
 }
