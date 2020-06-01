@@ -107,12 +107,13 @@ void creerEnfantEtLire(int prcNum)
 			char buf[1];
 
 			// lecture du bout de lecture du tuyeau et ecriture des données
-            // lues à la sortie standard
+      // lues à la sortie standard
 			while (read(tuyau[0], buf, 1) > 0)
 			{
 				write(1, buf, 1);
 			}
 			close(tuyau[0]);
+			// Fermer le processus zombie
 			wait(NULL);
 		}
 		// Fermer et dupliquer le tuyau courrant
