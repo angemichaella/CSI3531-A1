@@ -4,8 +4,8 @@ Fichier: cpr.c
 Nom #1: Ange Michaella Niyonkuru
 Numero d'etudiant #1: 
 
-Nom: Mugabo Kevin Gatera
-Numero d'etudiant:
+Nom #2: Mugabo Kevin GATERA
+Numero d'etudiant #2: 8725061
 
 Description: Ce programme contient le code pour la creation
              d'un processus enfant et y attacher un tuyau.
@@ -70,4 +70,6 @@ void creerEnfantEtLire(int prcNum)
 
     /* S.V.P. completez cette fonction selon les
        instructions du devoirs. */
+
+	
 }
